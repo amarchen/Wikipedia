@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Name=Wikipedia
+Icon=icon-launcher-default
+Exec=invoker --type=silica-qt5 -s /usr/bin/Wikipedia
+Comment=Sailfish UI application
+
+
