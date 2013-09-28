@@ -8,7 +8,7 @@ SOURCES += main.cpp
 HEADERS +=
 
 # QML files and folders
-qml.files = *.qml pages cover main.qml
+qml.files = *.qml pages cover components main.qml
 
 # The .desktop file
 desktop.files = Wikipedia.desktop

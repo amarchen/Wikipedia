@@ -19,12 +19,12 @@ Group:      Qt/Qt
 License:    LICENSE
 Source0:    %{name}-%{version}.tar.bz2
 Source100:  Wikipedia.yaml
-Requires:   mapplauncherd-booster-silica-qt5
 Requires:   sailfishsilica-qt5
-BuildRequires:  pkgconfig(Qt5Quick)
-BuildRequires:  pkgconfig(Qt5Qml)
-BuildRequires:  pkgconfig(Qt5Core)
+Requires:   mapplauncherd-booster-silica-qt5
 BuildRequires:  pkgconfig(qdeclarative5-boostable)
+BuildRequires:  pkgconfig(Qt5Core)
+BuildRequires:  pkgconfig(Qt5Qml)
+BuildRequires:  pkgconfig(Qt5Quick)
 
 %description
 Short description of my SailfishOS Application
@@ -58,8 +58,8 @@ rm -rf %{buildroot}
 
 %files
 %defattr(-,root,root,-)
-/usr/bin
-/usr/share/Wikipedia
 /usr/share/applications
+/usr/share/Wikipedia
+/usr/bin
 # >> files
 # << files
