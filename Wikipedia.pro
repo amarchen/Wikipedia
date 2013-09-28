@@ -8,10 +8,11 @@ SOURCES += main.cpp
 HEADERS +=
 
 # QML files and folders
-qml.files = *.qml pages cover components main.qml flickrwallpapersapp80.png
+qml.files = *.qml pages cover components main.qml Wikipedia.png
 
 # The .desktop file
-desktop.files = Wikipedia.desktop flickrwallpapersapp80.png
+desktop.files = Wikipedia.desktop
+appicon.files = Wikipedia.png
 
 # Please do not modify the following line.
 include(sailfishapplication/sailfishapplication.pri)

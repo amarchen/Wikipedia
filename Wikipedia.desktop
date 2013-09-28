@@ -6,7 +6,7 @@ Terminal=false
 Name=Wikipedia
 Comment=Sailfish Wikipedia
 Exec=invoker --type=silica-qt5 -s /usr/bin/Wikipedia
-Icon=icon-launcher-component-gallery
+Icon=/usr/share/icons/hicolor/90x90/apps/Wikipedia.png
 X-Window-Icon=
 X-HildonDesk-ShowInToolbar=true
 X-Osso-Type=application/x-executable
