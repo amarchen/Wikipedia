@@ -46,7 +46,6 @@ Page {
                 height: mainWikipediaPage.height
                 url: searchField.acceptedInput === "" ? "http://m.wikipedia.org" : "http://m.wikipedia.org/w/index.php?search=" +
                                                        encodeURIComponent(searchField.acceptedInput)
-
                 onUrlChanged: {
                     console.log("webView url changed to " + url);
                 }
