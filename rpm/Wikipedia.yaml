@@ -3,11 +3,11 @@ Summary: Wikipedia for Sailfish
 Version: 0.1
 Release: 1
 Group: Qt/Qt
-License: LICENSE
+License: Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Unported License
 Sources:
 - '%{name}-%{version}.tar.bz2'
-Description: |
-  Short description of my SailfishOS Application
+Description: |-
+  Wikipedia for Sailfish
 Configure: none
 Builder: qtc5
 PkgConfigBR:
@@ -19,8 +19,8 @@ Requires:
 - mapplauncherd-booster-silica-qt5
 - sailfishsilica-qt5
 Files:
-- 
 - /usr/bin
 - /usr/share/Wikipedia
 - /usr/share/applications
 - /usr/share/icons/hicolor/90x90/apps
+PkgBR: []
