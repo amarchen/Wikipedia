@@ -61,6 +61,15 @@ Page {
 
         }
 
+        PullDownMenu {
+            MenuItem {
+                text: "About"
+                onClicked: {
+                    pageStack.push("AboutPage.qml")
+                }
+            }
+        }
+
     }
 
     Component.onCompleted: {

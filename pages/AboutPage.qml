@@ -1,0 +1,20 @@
+import QtQuick 2.0
+import Sailfish.Silica 1.0
+
+Page {
+    // @TODO: Use version label from app's metadata
+    Label {
+        anchors.centerIn: parent
+        width: parent.width
+        wrapMode: Text.WrapAtWordBoundaryOrAnywhere
+        horizontalAlignment: Text.AlignHCenter
+        text: "Simple Wikipedia example app.<br/>" +
+              "by Artem Marchenko<br/><br/>" +
+              "See more at <a href='https://github.com/amarchen/Wikipedia'>https://github.com/amarchen/Wikipedia</a><br/><br/>" +
+              "Ask at <a href='http://webchat.freenode.net/?channels=sailfishos'>#sailfishos</a> channel on Freenode IRC for support"
+
+        onLinkActivated: {
+            Qt.openUrlExternally(link)
+        }
+    }
+}
