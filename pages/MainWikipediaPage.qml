@@ -17,6 +17,9 @@ Page {
         anchors.left: parent.left
         anchors.right: parent.right
 
+        EnterKey.enabled: text.trim().length > 0
+        EnterKey.text: "Go!"
+
         Component.onCompleted: {
             acceptedInput = ""
             _editor.accepted.connect(searchEntered)
