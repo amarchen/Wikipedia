@@ -14,7 +14,8 @@ Page {
               "Ask at <a href='http://webchat.freenode.net/?channels=sailfishos'>#sailfishos</a> channel on Freenode IRC for support"
 
         onLinkActivated: {
-            Qt.openUrlExternally(link)
+//            Qt.openUrlExternally(link)
+            pageStack.push("BrowserPage.qml", {"url": link})
         }
     }
 }
