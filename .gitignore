@@ -1,2 +1,3 @@
 Makefile
 RPMS
+*.pro.user
