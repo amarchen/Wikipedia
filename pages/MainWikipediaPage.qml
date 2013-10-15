@@ -66,6 +66,12 @@ Page {
 
         PullDownMenu {
             MenuItem {
+                text: "Tweet"
+                onClicked: {
+                    pageStack.push("TweetDialog.qml", {initialText: webView.title + " via @WikiSailfish", initialUrl: webView.url})
+                }
+            }
+            MenuItem {
                 text: "About"
                 onClicked: {
                     pageStack.push("AboutPage.qml")
