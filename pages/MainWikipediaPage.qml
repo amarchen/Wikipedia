@@ -4,6 +4,7 @@ import Sailfish.Silica.theme 1.0
 
 import QtWebKit 3.0
 
+import "../components"
 
 Page {
     id: mainWikipediaPage
@@ -79,6 +80,12 @@ Page {
             }
         }
 
+    }
+
+    Keys {
+        onKeySetChanged: {
+            console.log("keys changed to " + JSON.stringify(keySet))
+        }
     }
 
     Component.onCompleted: {
