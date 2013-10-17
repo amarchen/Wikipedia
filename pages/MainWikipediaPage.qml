@@ -29,6 +29,7 @@ Page {
         // is called when user presses the Return key
         function searchEntered() {
             searchField.acceptedInput = text
+            mixpanel.track("searched", {text: text} )
         }
 
     }
@@ -70,12 +71,19 @@ Page {
                 text: "Tweet"
                 onClicked: {
                     pageStack.push("TweetDialog.qml", {initialText: webView.title + " via @WikiSailfish", initialUrl: webView.url})
+                    mixpanel.track("opened Tweet dialog")
+
+                    var tweetDialog = pageStack.currentPage
+                    tweetDialog.postedTweet.connect(function(initialUrl, initialText) {
+                        mixpanel.track("posted tweet", {initialUrl: initialUrl, initialText: initialText})
+                    })
                 }
             }
             MenuItem {
                 text: "About"
                 onClicked: {
                     pageStack.push("AboutPage.qml")
+                    mixpanel.track("opened About page")
                 }
             }
         }
@@ -85,12 +93,19 @@ Page {
     Keys {
         onKeySetChanged: {
             console.log("keys changed to " + JSON.stringify(keySet))
+            if(keySet) {
+                mixpanel.mixpanelToken = keySet.mixpanelToken
+                mixpanel.track("started")
+            }
         }
     }
 
-    Component.onCompleted: {
-        console.log("mainWikipediaPage component completed")
+    Mixpanel {
+        id: mixpanel
+        userId: "tmpUserId"
+        test: true
     }
+
 }
 
 

@@ -9,6 +9,8 @@ Dialog {
     // URL and text to show when initializing the view (user can change it later, we won't reflect it to these properties)
     property url initialUrl: ""
     property string initialText: ""
+    // well, probably posted
+    signal postedTweet(string initialUrl, string initialText)
 
 
     // Internal
@@ -20,7 +22,6 @@ Dialog {
         // It's a little ugly, but maybe better than showing "Done" while user is still about to post tweet
         // Whole dialog will anyway be replaced with the proper nemo social plugin use at some point
         acceptText: _tweetProbablyPosted ? "Done" : "Cancel"
-
     }
 
     WebView {
@@ -51,6 +52,12 @@ Dialog {
         res += "&url="
         res += encodeURIComponent(initialUrl)
         return res
+    }
+
+    on_TweetProbablyPostedChanged: {
+        if(_tweetProbablyPosted) {
+            postedTweet(initialUrl, initialText)
+        }
     }
 
 }
