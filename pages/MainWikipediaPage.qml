@@ -3,6 +3,7 @@ import Sailfish.Silica 1.0
 import Sailfish.Silica.theme 1.0
 
 import QtWebKit 3.0
+import QtSystemInfo 5.0
 
 import "../components"
 
@@ -102,8 +103,11 @@ Page {
 
     Mixpanel {
         id: mixpanel
-        userId: "tmpUserId"
-        test: true
+        userId: devinfo.imei(0) == "" ? "emulatorImei" : devinfo.imei(0)
+    }
+
+    DeviceInfo {
+        id: devinfo
     }
 
 }

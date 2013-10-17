@@ -21,10 +21,13 @@ Source0:    %{name}-%{version}.tar.bz2
 Source100:  Wikipedia.yaml
 Requires:   mapplauncherd-booster-silica-qt5
 Requires:   sailfishsilica-qt5
+Requires: pkgconfig(Qt5SystemInfo)
+Requires:   qt5-qtdeclarative-systeminfo
 BuildRequires:  pkgconfig(Qt5Quick)
 BuildRequires:  pkgconfig(Qt5Qml)
 BuildRequires:  pkgconfig(Qt5Core)
 BuildRequires:  pkgconfig(qdeclarative5-boostable)
+BuildRequires:  pkgconfig(Qt5SystemInfo)
 
 %description
 Short description of my SailfishOS Application
