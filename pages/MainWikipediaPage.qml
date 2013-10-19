@@ -10,9 +10,30 @@ import "../components"
 Page {
     id: mainWikipediaPage
 
+    // Wikipedia used. Used subdomain name to be precise
+    property string usedUrlCode: "en"
+
     // Language selection menu is functional only if combobox opens to a separate page
     // At the moment it needs to have at least this many items for it. A hack of course
     property int _MIN_MENU_ITEM_COUNT_FOR_COMBOBOX_TO_OPEN_IN_A_SEPARATE_VIEW: 7
+
+    ListModel {
+        id: supportedLangsModel
+        ListElement {name: "English"
+                     urlCode: "en"}
+        ListElement {name: "Finnish"
+                     urlCode: "fi"}
+        ListElement {name: "French"
+                     urlCode: "fr"}
+        ListElement {name: "Potrtuguese"
+                     urlCode: "pt"}
+        ListElement {name: "Russian"
+                     urlCode: "ru"}
+        ListElement {name: "Spanish"
+                     urlCode: "es"}
+        ListElement {name: "Ukrainian"
+                     urlCode: "uk"}
+    }
 
     SearchField {
         id: searchField
@@ -54,10 +75,12 @@ Page {
                 id: webView
                 width: parent.width
                 height: mainWikipediaPage.height
-                url: searchField.acceptedInput === "" ? "http://m.wikipedia.org" : "http://m.wikipedia.org/w/index.php?search=" +
-                                                       encodeURIComponent(searchField.acceptedInput)
+                url: "http://" + usedUrlCode + ".m.wikipedia.org/"
+                     + (searchField.acceptedInput === "" ? "" : "w/index.php?search=" +
+                                                                encodeURIComponent(searchField.acceptedInput)
+                       )
                 onUrlChanged: {
-                    console.log("5webView url changed to " + url);
+                    console.log("webView url changed to " + url);
                 }
 
             }
@@ -94,16 +117,20 @@ Page {
             MenuItem {
                 ComboBox {
                     id: langSelectionBox
+
                     label: "Choose language"
+                    currentIndex: langModelIndexByUrlCode(usedUrlCode)
 
                     menu: ContextMenu {
-                        MenuItem { text: "English" }
-                        MenuItem { text: "Finnish" }
-                        MenuItem { text: "French" }
-                        MenuItem { text: "Portuguese" }
-                        MenuItem { text: "Russian" }
-                        MenuItem { text: "Spanish" }
-                        MenuItem { text: "Ukrainian" }
+                        Repeater {
+                            model: supportedLangsModel
+                            MenuItem {text: name
+                            }
+                        }
+                        onActivated: {
+                            usedUrlCode = supportedLangsModel.get(index).urlCode
+                        }
+
                     }
 
                     Component.onCompleted: {
@@ -112,7 +139,6 @@ Page {
 
                 }
                 onClicked: {
-//                    pageStack.push("LanguageChoiceDialog.qml")
                     langSelectionBox.clicked(null)
                 }
             }
@@ -140,6 +166,10 @@ Page {
         id: devinfo
     }
 
+    onUsedUrlCodeChanged: {
+        mixpanel.track("chose lang", {lang: usedUrlCode})
+    }
+
     // Just prints a warning if number of langs is not enough for forcing combo box opening in  separate page
     // It won't be functional then
     // @param menu ComboBox'es ContextMenu
@@ -156,6 +186,15 @@ Page {
                        + _MIN_MENU_ITEM_COUNT_FOR_COMBOBOX_TO_OPEN_IN_A_SEPARATE_VIEW)
     }
 
+    // @return -1 if given code isn't found
+    function langModelIndexByUrlCode(urlCode, langModel) {
+        for(var i=0; i < langModel.count; i++) {
+            if(langModel.get(i).urlCode === urlCode) {
+                return i
+            }
+        }
+        return -1
+    }
 
 }
 
