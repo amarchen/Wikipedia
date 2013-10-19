@@ -10,6 +10,10 @@ import "../components"
 Page {
     id: mainWikipediaPage
 
+    // Language selection menu is functional only if combobox opens to a separate page
+    // At the moment it needs to have at least this many items for it. A hack of course
+    property int _MIN_MENU_ITEM_COUNT_FOR_COMBOBOX_TO_OPEN_IN_A_SEPARATE_VIEW: 7
+
     SearchField {
         id: searchField
         property string acceptedInput: ""
@@ -87,6 +91,32 @@ Page {
                     mixpanel.track("opened About page")
                 }
             }
+            MenuItem {
+                ComboBox {
+                    id: langSelectionBox
+                    label: "Choose language"
+
+                    menu: ContextMenu {
+                        MenuItem { text: "English" }
+                        MenuItem { text: "Finnish" }
+                        MenuItem { text: "French" }
+                        MenuItem { text: "Portuguese" }
+                        MenuItem { text: "Russian" }
+                        MenuItem { text: "Spanish" }
+                        MenuItem { text: "Ukrainian" }
+                    }
+
+                    Component.onCompleted: {
+                        alertIfComboBoxDoesNotNeedASeparateMenu(menu)
+                    }
+
+                }
+                onClicked: {
+//                    pageStack.push("LanguageChoiceDialog.qml")
+                    langSelectionBox.clicked(null)
+                }
+            }
+
         }
 
     }
@@ -109,6 +139,23 @@ Page {
     DeviceInfo {
         id: devinfo
     }
+
+    // Just prints a warning if number of langs is not enough for forcing combo box opening in  separate page
+    // It won't be functional then
+    // @param menu ComboBox'es ContextMenu
+    function alertIfComboBoxDoesNotNeedASeparateMenu(menu) {
+        var menuChildrenCount = 0
+        for (var i=0; i<menu._contentColumn.children.length; i++) {
+            var child = menu._contentColumn.children[i]
+            if (child && child.hasOwnProperty("__silica_menuitem")) {
+                ++menuChildrenCount
+            }
+        }
+        console.assert(menuChildrenCount >= _MIN_MENU_ITEM_COUNT_FOR_COMBOBOX_TO_OPEN_IN_A_SEPARATE_VIEW,
+                       "ERROR: lang selection menu has only " + menuChildrenCount +" items, must have at least "
+                       + _MIN_MENU_ITEM_COUNT_FOR_COMBOBOX_TO_OPEN_IN_A_SEPARATE_VIEW)
+    }
+
 
 }
 
