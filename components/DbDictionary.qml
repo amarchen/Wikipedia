@@ -87,7 +87,7 @@ QtObject {
                 }
             }
         );
-        console.log("DbDictionary: loadValue: returning " + res + " for " +name)
+//        console.log("DbDictionary: loadValue: returning " + res + " for " +name)
         return res;
     }
 }

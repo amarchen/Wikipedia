@@ -96,25 +96,6 @@ Page {
 
         PullDownMenu {
             MenuItem {
-                text: "Tweet"
-                onClicked: {
-                    pageStack.push("TweetDialog.qml", {initialText: webView.title + " via @WikiSailfish", initialUrl: webView.url})
-                    mixpanel.track("opened Tweet dialog")
-
-                    var tweetDialog = pageStack.currentPage
-                    tweetDialog.postedTweet.connect(function(initialUrl, initialText) {
-                        mixpanel.track("posted tweet", {initialUrl: initialUrl, initialText: initialText})
-                    })
-                }
-            }
-            MenuItem {
-                text: "About"
-                onClicked: {
-                    pageStack.push("AboutPage.qml")
-                    mixpanel.track("opened About page")
-                }
-            }
-            MenuItem {
                 ComboBox {
                     id: langSelectionBox
 
@@ -140,6 +121,26 @@ Page {
                 }
                 onClicked: {
                     langSelectionBox.clicked(null)
+                }
+            }
+
+            MenuItem {
+                text: "Tweet"
+                onClicked: {
+                    pageStack.push("TweetDialog.qml", {initialText: webView.title + " via @WikiSailfish", initialUrl: webView.url})
+                    mixpanel.track("opened Tweet dialog")
+
+                    var tweetDialog = pageStack.currentPage
+                    tweetDialog.postedTweet.connect(function(initialUrl, initialText) {
+                        mixpanel.track("posted tweet", {initialUrl: initialUrl, initialText: initialText})
+                    })
+                }
+            }
+            MenuItem {
+                text: "About"
+                onClicked: {
+                    pageStack.push("AboutPage.qml")
+                    mixpanel.track("opened About page")
                 }
             }
 
