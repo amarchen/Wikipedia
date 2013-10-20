@@ -162,12 +162,18 @@ Page {
         userId: devinfo.imei(0) == "" ? "emulatorImei" : devinfo.imei(0)
     }
 
+    DbDictionary {
+        id: dictionary
+        dbName: "WikipediaSettings"
+    }
+
     DeviceInfo {
         id: devinfo
     }
 
     onUsedUrlCodeChanged: {
         mixpanel.track("chose lang", {lang: usedUrlCode})
+        dictionary.saveValue("wikipediaUrlCodeUsed", usedUrlCode)
     }
 
     // Just prints a warning if number of langs is not enough for forcing combo box opening in  separate page
@@ -194,6 +200,10 @@ Page {
             }
         }
         return -1
+    }
+
+    Component.onCompleted: {
+        usedUrlCode = dictionary.loadValue("wikipediaUrlCodeUsed", "en")
     }
 
 }
