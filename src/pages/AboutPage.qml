@@ -2,6 +2,10 @@ import QtQuick 2.0
 import Sailfish.Silica 1.0
 
 Page {
+
+    // Internal - for testing
+    property alias _i: internals
+
     // @TODO: Use version label from app's metadata
     Label {
         anchors.centerIn: parent
@@ -17,5 +21,10 @@ Page {
 //            Qt.openUrlExternally(link)
             pageStack.push("BrowserPage.qml", {"url": link})
         }
+    }
+
+    QtObject {
+        id: internals
+        property string pageName: "AboutPage"
     }
 }

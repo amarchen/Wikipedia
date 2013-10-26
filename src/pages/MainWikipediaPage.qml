@@ -17,6 +17,9 @@ Page {
     // At the moment it needs to have at least this many items for it. A hack of course
     property int _MIN_MENU_ITEM_COUNT_FOR_COMBOBOX_TO_OPEN_IN_A_SEPARATE_VIEW: 7
 
+    // Exposes some internal stuff for testing purposes only
+    property alias _i: internals
+
     ListModel {
         id: supportedLangsModel
         ListElement {name: "English"
@@ -137,6 +140,7 @@ Page {
                 }
             }
             MenuItem {
+                id: aboutMenuItem
                 text: "About"
                 onClicked: {
                     pageStack.push("AboutPage.qml")
@@ -201,6 +205,12 @@ Page {
             }
         }
         return -1
+    }
+
+    QtObject {
+        id: internals
+        property string pageName: "MainWikipediaPage"
+        property alias aboutMenuItem: aboutMenuItem
     }
 
     Component.onCompleted: {

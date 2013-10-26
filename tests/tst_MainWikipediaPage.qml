@@ -28,8 +28,9 @@ ApplicationWindow {
         // see graphics update when test is clicking through buttons, though you might need to yield control from time to time then
         when: windowShown
 
-        function test_Dummy() {
-            compare(1, 1)
+        function test_AboutPageShownAfterMenuClick() {
+            mainPage._i.aboutMenuItem.clicked(null)
+            compare(pageStack.currentPage._i.pageName, "AboutPage")
         }
     }
 
