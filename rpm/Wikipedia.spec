@@ -33,6 +33,16 @@ BuildRequires:  pkgconfig(Qt5SystemInfo)
 %description
 Short description of my SailfishOS Application
 
+%package tests
+Summary:    tests for the Wikipedia app
+BuildRequires:  pkgconfig(Qt5QuickTest)
+Requires:   qt5-qtdeclarative-qtquicktest
+Requires:   sailfish-app-with-qml-test
+Requires:   qt5-qtdeclarative-import-qttest
+
+%description tests
+%{summary}.
+
 
 %prep
 %setup -q -n %{name}-%{version}
@@ -66,5 +76,13 @@ rm -rf %{buildroot}
 /usr/share/Wikipedia
 /usr/share/applications
 /usr/share/icons/hicolor/90x90/apps
+
+# tests to be located side by side to the main package and start from "tst-".
+# I find it convenient. Also easy to find and remove tst- directories manually if needed
+%files tests
+%defattr(-,root,root,-)
+/usr/bin/tst-Wikipedia
+/usr/share/tst-Wikipedia
+
 # >> files
 # << files

@@ -14,6 +14,10 @@ There is one subcomponent AppStoreKeys that points to the Artem's private reposi
 
 In your own app you probably will do the other way around, have your settings as a part of the main project and use external libraries as submodules. The approach used here is just the simplest way for me (Artem) to show you full app code, yet keep exactly production settings separate.
 
+Tests should be run as
+`/usr/bin/tst-Wikipedia -input /usr/share/tst-Wikipedia/`
+Can be run from QtCreator only if you deploy via copying binaries (but you need to deploy as RPM at least once first for installing dependencies)
+
 
 Support and license
 -------------------
