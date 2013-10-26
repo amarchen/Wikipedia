@@ -1,25 +1,6 @@
-# The name of your app
-TARGET = Wikipedia
+TEMPLATE = subdirs
+SUBDIRS = src
 
-# C++ sources
-SOURCES += main.cpp
-
-# C++ headers
-HEADERS +=
-
-# QML files and folders
-qml.files = *.qml pages cover components main.qml Wikipedia.png
-
-# The .desktop file
-desktop.files = Wikipedia.desktop
-appicon.files = Wikipedia.png
-
-# Please do not modify the following line.
-include(sailfishapplication/sailfishapplication.pri)
-
-OTHER_FILES = \
-    rpm/Wikipedia.yaml \
-    rpm/Wikipedia.spec \
-    pages/MainWikipediaPage.qml \
-    flickrwallpapersapp80.png
-
+# ordered makes sure projects are built in the order specified in SUBDIRS.
+# Usually it makes sense to build tests only if main component can be built
+CONFIG += ordered
