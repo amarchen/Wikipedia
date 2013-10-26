@@ -1,0 +1,3 @@
+[submodule "src/components/AppStoreKeys"]
+	path = src/components/AppStoreKeys
+	url = https://artemfinland@bitbucket.org/artemfinland/wikipedia-for-sailfish-settings.git
