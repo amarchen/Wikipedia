@@ -17,9 +17,6 @@ qml.files = *.qml pages cover components main.qml Wikipedia.png
 desktop.files = Wikipedia.desktop
 appicon.files = Wikipedia.png
 
-# Please do not modify the following line.
-#include(sailfishapplication/sailfishapplication.pri)
-
 OTHER_FILES = \
     ../rpm/Wikipedia.spec \
     pages/MainWikipediaPage.qml

@@ -1,15 +1,27 @@
 
 #include <QGuiApplication>
 #include <QQuickView>
+#include <QQmlEngine>
 
-#include "sailfishapplication.h"
+#include <sailfishapp/sailfishapp.h>
 
 Q_DECL_EXPORT int main(int argc, char *argv[])
 {
-    QScopedPointer<QGuiApplication> app(Sailfish::createApplication(argc, argv));
-    QScopedPointer<QQuickView> view(Sailfish::createView("main.qml"));
+//    QGuiApplication* app = SailfishApp::application(argc, argv);
+//    QQuickView* view = SailfishApp::createView();
+//    view->engine()->addImportPath(SailfishApp::pathTo("qml/components").toString());
+//    view->setSource(SailfishApp::pathTo("qml/sailImportPathTrial.qml"));
+//    view->show();
+
+//    int res = app->exec();
+//    delete app;
+//    return res;
+    QScopedPointer<QGuiApplication> app(SailfishApp::application(argc, argv));
+    QScopedPointer<QQuickView> view(SailfishApp::createView());
+    view->engine()->addImportPath(SailfishApp::pathTo("components/Mixpanel/src").toString());
+    view->setSource(SailfishApp::pathTo("main.qml"));
     
-    Sailfish::showView(view.data());
+    view->show();
     
     return app->exec();
 }
