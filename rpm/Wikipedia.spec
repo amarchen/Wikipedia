@@ -37,7 +37,7 @@ Short description of my SailfishOS Application
 Summary:    tests for the Wikipedia app
 BuildRequires:  pkgconfig(Qt5QuickTest)
 Requires:   qt5-qtdeclarative-qtquicktest
-Requires:   sailfish-app-with-qml-test
+Requires:   Wikipedia
 Requires:   qt5-qtdeclarative-import-qttest
 
 %description tests
