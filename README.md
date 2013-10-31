@@ -5,11 +5,12 @@ Wikipedia for Sailfish OS
 
 So far it demonstrates a use of Sailfish Silica library and how you wrap the app, add icon, etc.
 
-Installation
+Installation, getting started
 ------------
 
-Just do a git clone or download the sources.
-There is one subcomponent AppStoreKeys that points to the Artem's private repository. App should be fully functional without it (will fallback to the default demo keys), if you do have access to that component, app will use keys actually used for the app store.
+1. Do a git clone of the sources.
+2. Fetch submodules used by running init.sh or manually run commands from it if you are on a system without bash shell
+It will [hopefully] fail to fetch subcomponent AppStoreKeys that points to the Artem's private repository. That's okay. App should be fully functional without it (will fallback to the default demo keys), if you do have access to that component, app will use keys actually used for the app store.
 
 
 In your own app you probably will do the other way around, have your settings as a part of the main project and use external libraries as submodules. The approach used here is just the simplest way for me (Artem) to show you full app code, yet keep exactly production settings separate.
