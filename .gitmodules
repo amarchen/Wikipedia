@@ -3,4 +3,4 @@
 	url = https://artemfinland@bitbucket.org/artemfinland/wikipedia-for-sailfish-settings.git
 [submodule "src/components/Mixpanel"]
 	path = src/components/Mixpanel
-	url = https://github.com/amarchen/Mixpanel.git
+	url = https://github.com/amarchen/Mixpanel-qml.git
