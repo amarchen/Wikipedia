@@ -1,5 +1,5 @@
 # The name of your app
-TARGET = Wikipedia
+TARGET = wikipedia
 
 #CONFIG += sailfishapp
 LIBS += -lsailfishapp
@@ -11,14 +11,15 @@ SOURCES += main.cpp
 HEADERS +=
 
 # QML files and folders
-qml.files = *.qml pages cover components main.qml Wikipedia.png
+qml.files = *.qml pages cover components main.qml wikipedia.png
 
 # The .desktop file
-desktop.files = Wikipedia.desktop
-appicon.files = Wikipedia.png
+desktop.files = wikipedia.desktop
+appicon.files = wikipedia.png
 
 OTHER_FILES = \
-    ../rpm/Wikipedia.spec \
+    ../rpm/wikipedia.yaml \
+    ../rpm/wikipedia.spec \
     pages/MainWikipediaPage.qml
 
 ###### used to be in sailfishapplication.pri

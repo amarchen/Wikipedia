@@ -1,7 +1,7 @@
 TEMPLATE = app
 
 # The name of your app
-TARGET = tst-Wikipedia
+TARGET = tst-wikipedia
 
 CONFIG += qmltestcase
 
