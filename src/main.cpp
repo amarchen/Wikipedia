@@ -23,7 +23,7 @@ int main(int argc, char *argv[])
     QScopedPointer<QGuiApplication> app(SailfishApp::application(argc, argv));
     QScopedPointer<QQuickView> view(SailfishApp::createView());
     view->engine()->addImportPath(SailfishApp::pathTo("qml/components").toString());
-    view->setSource(SailfishApp::pathTo("qml/pages/MainWikipediaPage.qml"));
+    view->setSource(SailfishApp::pathTo("qml/main.qml"));
 
     view->show();
 
