@@ -1,12 +1,7 @@
 [Desktop Entry]
-Encoding=UTF-8
-Version=1.0
 Type=Application
-Terminal=false
+X-Nemo-Application-Type=silica-qt5
 Name=Wikipedia
-Comment=Sailfish Wikipedia
-Exec=invoker --type=silica-qt5 -s /usr/bin/wikipedia
-Icon=/usr/share/icons/hicolor/90x90/apps/wikipedia.png
-X-Window-Icon=
-X-HildonDesk-ShowInToolbar=true
-X-Osso-Type=application/x-executable
+Icon=harbour-wikipedia
+Exec=harbour-wikipedia
+
