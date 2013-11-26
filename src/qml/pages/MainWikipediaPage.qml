@@ -1,8 +1,6 @@
 import QtQuick 2.0
 import Sailfish.Silica 1.0
 
-import QtWebKit 3.0
-
 import harbour.wikipedia.Mixpanel 0.1
 import "../components"
 
@@ -37,43 +35,47 @@ Page {
                      urlCode: "uk"}
     }
 
-    SearchField {
-        id: searchField
-        property string acceptedInput: ""
-
-        placeholderText: "Search.."
-        anchors.top: parent.top
-        anchors.left: parent.left
-        anchors.right: parent.right
-
-        EnterKey.enabled: text.trim().length > 0
-        EnterKey.text: "Go!"
-
-        Component.onCompleted: {
-            acceptedInput = ""
-            _editor.accepted.connect(searchEntered)
-        }
-
-        // is called when user presses the Return key
-        function searchEntered() {
-            searchField.acceptedInput = text
-            mixpanel.track("searched", {text: text} )
-        }
-
-    }
-
     SilicaFlickable {
-        anchors.top: searchField.bottom
+        anchors.top: parent.top
         anchors.left: parent.left
         anchors.right: parent.right
         anchors.bottom: parent.bottom
         contentHeight: parent.height - searchField.height
+
+        SearchField {
+            id: searchField
+            property string acceptedInput: ""
+
+            placeholderText: "Search.."
+            anchors.top: parent.top
+            anchors.left: parent.left
+            anchors.right: parent.right
+
+            EnterKey.enabled: text.trim().length > 0
+            EnterKey.text: "Go!"
+
+            Component.onCompleted: {
+                acceptedInput = ""
+                _editor.accepted.connect(searchEntered)
+            }
+
+            // is called when user presses the Return key
+            function searchEntered() {
+                searchField.acceptedInput = text
+                mixpanel.track("searched", {text: text} )
+            }
+
+        }
+
         Rectangle {
             id: backgroundFiller
-            anchors.fill: parent
+            anchors.top: searchField.bottom
+            anchors.left: parent.left
+            anchors.right: parent.right
+            anchors.bottom: parent.bottom
             color: "white"
 
-            WebView {
+            SilicaWebView {
                 id: webView
                 width: parent.width
                 height: mainWikipediaPage.height
@@ -97,6 +99,7 @@ Page {
         }
 
         PullDownMenu {
+            id: pulleyMenu
             MenuItem {
                 ComboBox {
                     id: langSelectionBox

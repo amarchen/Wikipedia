@@ -1,8 +1,6 @@
 import QtQuick 2.0
 import Sailfish.Silica 1.0
 
-import QtWebKit 3.0
-
 Dialog {
     id: wholeTweetDialog
 
@@ -24,7 +22,7 @@ Dialog {
         acceptText: _tweetProbablyPosted ? "Done" : "Cancel"
     }
 
-    WebView {
+    SilicaWebView {
         id: tweetWebView
         anchors.left: parent.left
         anchors.top: dialogHeader.bottom
