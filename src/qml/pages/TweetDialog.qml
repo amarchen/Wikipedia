@@ -4,6 +4,9 @@ import Sailfish.Silica 1.0
 Dialog {
     id: wholeTweetDialog
 
+    // Hardcoding since we cannot import WebKit
+    readonly property int _loadSucceededStatus: 2
+
     // URL and text to show when initializing the view (user can change it later, we won't reflect it to these properties)
     property url initialUrl: ""
     property string initialText: ""
@@ -34,7 +37,7 @@ Dialog {
         onLoadingChanged: {
             // A bit of heuristics to change the accept label when we think user posted a tweet
             // Will be made irrelevant when we switch to the proper nemo social plugin
-            if((loadRequest.status === WebView.LoadSucceededStatus) &&
+            if((loadRequest.status === _loadSucceededStatus) &&
                     (url.toString().indexOf("/tweet/complete") != -1 )) {
                 _tweetProbablyPosted = true
             } else {
