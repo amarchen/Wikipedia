@@ -9,7 +9,7 @@ import Sailfish.Silica 1.0
 
 
 //import "../src/pages"
-import "../Wikipedia/pages"
+import "../harbour-wikipedia/qml/pages"
 
 
 // Putting TestCase into the full app structure to test UI interactions and probably page transitions too
