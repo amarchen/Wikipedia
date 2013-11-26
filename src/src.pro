@@ -1,54 +1,55 @@
-# The name of your app
-TARGET = wikipedia
+# The name of your app.
+# NOTICE: name defined in TARGET has a corresponding QML filename.
+#         If name defined in TARGET is changed, following needs to be
+#         done to match new name:
+#         - corresponding QML filename must be changed
+#         - desktop icon filename must be changed
+#         - desktop filename must be changed
+#         - icon definition filename in desktop file must be changed
+TARGET = harbour-wikipedia
 
 #CONFIG += sailfishapp
-LIBS += -lsailfishapp
 
-# C++ sources
-SOURCES += main.cpp
-
-# C++ headers
-HEADERS +=
-
+# Start of temporary fix for the icon for the Nov 2013 harbour requirements
 # QML files and folders
-qml.files = *.qml pages cover components main.qml wikipedia.png
-
-# The .desktop file
-desktop.files = wikipedia.desktop
-appicon.files = wikipedia.png
-
-OTHER_FILES = \
-    ../rpm/wikipedia.yaml \
-    ../rpm/wikipedia.spec \
-    pages/MainWikipediaPage.qml
-
-###### used to be in sailfishapplication.pri
 QT += quick qml
-
-INCLUDEPATH += $$PWD
+CONFIG += link_pkgconfig
+PKGCONFIG += sailfishapp
+INCLUDEPATH += /usr/include/sailfishapp
 
 TARGETPATH = /usr/bin
 target.path = $$TARGETPATH
 
 DEPLOYMENT_PATH = /usr/share/$$TARGET
+qml.files = qml
 qml.path = $$DEPLOYMENT_PATH
+
+desktop.files = harbour-wikipedia.desktop
 desktop.path = /usr/share/applications
-appicon.path = /usr/share/icons/hicolor/90x90/apps
 
-contains(CONFIG, desktop) {
-    DEFINES *= DESKTOP
-}
+icon.files = harbour-wikipedia.png
+icon.path = /usr/share/icons/hicolor/86x86/apps
 
-INSTALLS += target qml desktop appicon
+# moving mixpanel to harbour.wikipedia.Mixpanel location to satisfy new harbour requirements
+# qml.files/path will deploy a copy to the old location, but it's ok, it's not going to be used
+mixpanel.files = qml/components/Mixpanel/src/Mixpanel
+mixpanel.path = $$DEPLOYMENT_PATH/qml/components/harbour/wikipedia
 
-DEFINES += DEPLOYMENT_PATH=\"\\\"\"$${DEPLOYMENT_PATH}/\"\\\"\"
+INSTALLS += target icon desktop mixpanel qml
+# End of nov 2013 fix
 
-CONFIG += link_pkgconfig
-packagesExist(qdeclarative5-boostable) {
-    message("Building with qdeclarative-boostable support")
-    DEFINES += HAS_BOOSTER
-    PKGCONFIG += qdeclarative5-boostable
-} else {
-    warning("qdeclarative-boostable not available; startup times will be slower")
-}
+QML_IMPORT_PATH += $$PWD/qml/components/Mixpanel/src
 
+SOURCES += main.cpp
+
+OTHER_FILES = \
+    ../rpm/harbour-wikipedia.yaml \
+    ../rpm/harbour-wikipedia.spec \
+    qml/pages/MainWikipediaPage.qml \
+    qml/pages/AboutPage.qml \
+    qml/pages/BrowserPage.qml \
+    qml/pages/TweetDialog.qml \
+    qml/cover/CoverPage.qml \
+    qml/components/BaseKeySet.qml
+
+INCLUDEPATH += $$PWD

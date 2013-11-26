@@ -1,29 +1,31 @@
+#ifdef QT_QML_DEBUG
+#include <QtQuick>
+#endif
 
-#include <QGuiApplication>
+#include <sailfishapp.h>
+#include <QScopedPointer>
 #include <QQuickView>
 #include <QQmlEngine>
+#include <QGuiApplication>
 
-#include <sailfishapp/sailfishapp.h>
 
-Q_DECL_EXPORT int main(int argc, char *argv[])
+int main(int argc, char *argv[])
 {
-//    QGuiApplication* app = SailfishApp::application(argc, argv);
-//    QQuickView* view = SailfishApp::createView();
-//    view->engine()->addImportPath(SailfishApp::pathTo("qml/components").toString());
-//    view->setSource(SailfishApp::pathTo("qml/sailImportPathTrial.qml"));
-//    view->show();
+    // SailfishApp::main() will display "qml/template.qml", if you need more
+    // control over initialization, you can use:
+    //
+    //   - SailfishApp::application(int, char *[]) to get the QGuiApplication *
+    //   - SailfishApp::createView() to get a new QQuickView * instance
+    //   - SailfishApp::pathTo(QString) to get a QUrl to a resource file
+    //
+    // To display the view, call "show()" (will show fullscreen on device).
 
-//    int res = app->exec();
-//    delete app;
-//    return res;
     QScopedPointer<QGuiApplication> app(SailfishApp::application(argc, argv));
     QScopedPointer<QQuickView> view(SailfishApp::createView());
-    view->engine()->addImportPath(SailfishApp::pathTo("components/Mixpanel/src").toString());
-    view->setSource(SailfishApp::pathTo("main.qml"));
-    
+    view->engine()->addImportPath(SailfishApp::pathTo("qml/components").toString());
+    view->setSource(SailfishApp::pathTo("qml/main.qml"));
+
     view->show();
-    
+
     return app->exec();
 }
-
-

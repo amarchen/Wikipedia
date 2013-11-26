@@ -16,7 +16,7 @@ It will [hopefully] fail to fetch subcomponent AppStoreKeys that points to the A
 In your own app you probably will do the other way around, have your settings as a part of the main project and use external libraries as submodules. The approach used here is just the simplest way for me (Artem) to show you full app code, yet keep exactly production settings separate.
 
 Tests should be run as
-`/usr/bin/tst-Wikipedia -input /usr/share/tst-Wikipedia/ -import /usr/share/Wikipedia/components/Mixpanel/src/` from emulator command line (or specify it as alternative executable with parameters inside Creator)
+`/usr/share/tst-harbour-wikipedia/runTestsOnDevice.sh` from emulator command line (or specify it as "Use this command instead" inside Creator)
 
 Support and license
 -------------------

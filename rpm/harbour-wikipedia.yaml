@@ -1,0 +1,59 @@
+Name: harbour-wikipedia
+Summary: Wikipedia for Sailfish OS
+Version: 0.2
+Release: 3
+Group: Qt/Qt
+License: All rights reserved
+Sources:
+- '%{name}-%{version}.tar.bz2'
+Description: |-
+  Simple Wikipedia app for Sailfish OS
+Configure: none
+Builder: qtc5
+PkgConfigBR:
+- Qt5Core
+- Qt5Qml
+- Qt5Quick
+- sailfishapp
+
+Requires:
+- libsailfishapp
+
+Files:
+- '%{_datadir}/applications'
+- '%{_datadir}/icons/hicolor/86x86/apps/%{name}.png'
+- '%{_datadir}/applications/%{name}.desktop'
+- '%{_datadir}/%{name}/qml/main.qml'
+- '%{_datadir}/%{name}/qml/pages'
+- '%{_datadir}/%{name}/qml/cover'
+- '%{_datadir}/%{name}/qml/components/*.qml'
+- '%{_datadir}/%{name}/qml/components/harbour'
+- '%{_datadir}/%{name}/qml/components/AppStoreKeys'
+
+- '%{_bindir}/%{name}'
+PkgBR: []
+
+SubPackages:
+    - Name: test
+      Summary: Tests for the Wikipedia app
+      Group: Qt/Qt
+      Description: |-
+        Tests package for the Wikipedia app
+      AutoDepend: true
+      PkgConfigBR:
+      - Qt5QuickTest
+      Requires:
+      - qt5-qtdeclarative-import-qttest
+      Files:
+        - '%{_bindir}/tst-harbour-wikipedia'
+        - '%{_datadir}/tst-harbour-wikipedia/*.qml'
+        - '%{_datadir}/tst-harbour-wikipedia/*.sh'
+    - Name: fake
+      Summary: Collects mixpanel tests
+      Group: Qt/Qt
+      Description: |-
+        Removes from RPM files that would cause QA scripts warnings.
+      AutoDepend: true
+      Files:
+      - '%{_datadir}/%{name}/qml/components/Mixpanel/*'
+      - '%{_datadir}/%{name}/qml/components/Mixpanel/.*'

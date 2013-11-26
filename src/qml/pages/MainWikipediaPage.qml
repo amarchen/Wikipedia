@@ -1,11 +1,9 @@
 import QtQuick 2.0
 import Sailfish.Silica 1.0
-import Sailfish.Silica.theme 1.0
 
 import QtWebKit 3.0
-import QtSystemInfo 5.0
 
-import Mixpanel 0.1
+import harbour.wikipedia.Mixpanel 0.1
 import "../components"
 
 Page {
@@ -168,14 +166,44 @@ Page {
         userId: devinfo.imei(0) == "" ? "emulatorImei" : devinfo.imei(0)
     }
 
+    //  Start of Fix for nov 2013
     DbDictionary {
         id: dictionary
         dbName: "WikipediaSettings"
     }
 
-    DeviceInfo {
+//    DeviceInfo {
+//        id: devinfo
+//    }
+    QtObject {
         id: devinfo
+
+        // will be updated on demand
+        property string _userId: ""
+
+        function imei() {
+            if (_userId === "") {
+                _userId = provideUserId();
+            }
+            return _userId;
+        }
+
+        // Loads one from DB or generates a new one and saves it do DB
+        function provideUserId() {
+            var savedId = dictionary.loadValue("userId", null)
+            if(savedId === null)
+            {
+//                console.log("no saved userId, generating")
+                // let it be from 0 to a billion
+                savedId = Math.floor(Math.random() * 1000000000).toString()
+                dictionary.saveValue("userId", savedId)
+            }
+
+            return savedId
+        }
+
     }
+    //  End of Fix for nov 2013
 
     onUsedUrlCodeChanged: {
         mixpanel.track("chose lang", {lang: usedUrlCode})
