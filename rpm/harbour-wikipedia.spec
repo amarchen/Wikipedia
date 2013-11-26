@@ -45,7 +45,7 @@ Group:      Qt/Qt
 Requires:   %{name} = %{version}-%{release}
 
 %description fake
-Removes from RPM files that would cause QA scripts warnings. Including 90x90 icon that.. should never have been deployed
+Removes from RPM files that would cause QA scripts warnings.
 
 %prep
 %setup -q -n %{name}-%{version}
@@ -80,9 +80,13 @@ desktop-file-install --delete-original       \
 %files
 %defattr(-,root,root,-)
 %{_datadir}/applications
-%{_datadir}/%{name}
 %{_datadir}/icons/hicolor/86x86/apps/%{name}.png
 %{_datadir}/applications/%{name}.desktop
+%{_datadir}/%{name}/qml/pages
+%{_datadir}/%{name}/qml/cover
+%{_datadir}/%{name}/qml/components/*.qml
+%{_datadir}/%{name}/qml/components/harbour
+%{_datadir}/%{name}/qml/components/AppStoreKeys
 %{_bindir}/%{name}
 # >> files
 # << files
@@ -99,6 +103,5 @@ desktop-file-install --delete-original       \
 %defattr(-,root,root,-)
 %{_datadir}/%{name}/qml/components/Mixpanel/*
 %{_datadir}/%{name}/qml/components/Mixpanel/.*
-%{_datadir}/icons/hicolor/90x90/apps/%{name}.png
 # >> files fake
 # << files fake
