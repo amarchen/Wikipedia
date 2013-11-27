@@ -23,9 +23,11 @@ Page {
                      urlCode: "en"}
         ListElement {name: "Finnish"
                      urlCode: "fi"}
+        ListElement {name: "German"
+                     urlCode: "de"}
         ListElement {name: "French"
                      urlCode: "fr"}
-        ListElement {name: "Potrtuguese"
+        ListElement {name: "Portuguese"
                      urlCode: "pt"}
         ListElement {name: "Russian"
                      urlCode: "ru"}
