@@ -77,13 +77,6 @@ Page {
 
         }
 
-        ProgressCircle {
-            id: loadingProgressIndicator
-            anchors.centerIn: parent
-            visible: webView.loading
-            value: webView.loadProgress / 100
-        }
-
         PullDownMenu {
             id: pulleyMenu
             MenuItem {
@@ -138,6 +131,12 @@ Page {
 
         }
 
+    }
+    ProgressCircle {
+        id: loadingProgressIndicator
+        anchors.centerIn: parent
+        visible: webView.loading
+        value: webView.loadProgress / 100
     }
 
     Keys {
