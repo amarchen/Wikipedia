@@ -5,13 +5,20 @@ import Sailfish.Silica 1.0
 // Well, let's open browser inside then
 Page {
     property alias url: webView.url
-    SilicaFlickable {
-        anchors.fill: parent
 
-        SilicaWebView {
-            id: webView
-            anchors.fill: parent
-            url: "http://www.google.com"
+    SilicaWebView {
+        header: PageHeader {
+            title: "Web"
         }
+
+        id: webView
+        anchors.fill: parent
     }
+    ProgressCircle {
+        id: loadingProgressIndicator
+        anchors.centerIn: parent
+        visible: webView.loading
+        value: webView.loadProgress / 100
+    }
+
 }

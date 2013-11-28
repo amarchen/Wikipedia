@@ -37,14 +37,22 @@ Page {
                      urlCode: "uk"}
     }
 
-    SilicaFlickable {
-        anchors.top: parent.top
-        anchors.left: parent.left
-        anchors.right: parent.right
-        anchors.bottom: parent.bottom
-        contentHeight: parent.height - searchField.height
+    SilicaWebView {
+        id: webView
+        anchors.fill: parent
 
-        SearchField {
+        // accessing private _headerItem.. error prone and not public, don't know better way
+        // TODO: replace with a proper accessor if found
+        url: "http://" + usedUrlCode + ".m.wikipedia.org/"
+             + (_headerItem.acceptedInput === "" ? "" : "w/index.php?search=" +
+                                                        encodeURIComponent(_headerItem.acceptedInput)
+               )
+        onUrlChanged: {
+            console.log("webView url changed to " + url);
+        }
+
+
+        header: SearchField {
             id: searchField
             property string acceptedInput: ""
 
@@ -65,37 +73,6 @@ Page {
             function searchEntered() {
                 searchField.acceptedInput = text
                 mixpanel.track("searched", {text: text} )
-            }
-
-        }
-
-        Rectangle {
-            id: backgroundFiller
-            anchors.top: searchField.bottom
-            anchors.left: parent.left
-            anchors.right: parent.right
-            anchors.bottom: parent.bottom
-            color: "white"
-
-            SilicaWebView {
-                id: webView
-                width: parent.width
-                height: mainWikipediaPage.height
-                url: "http://" + usedUrlCode + ".m.wikipedia.org/"
-                     + (searchField.acceptedInput === "" ? "" : "w/index.php?search=" +
-                                                                encodeURIComponent(searchField.acceptedInput)
-                       )
-                onUrlChanged: {
-                    console.log("webView url changed to " + url);
-                }
-
-            }
-
-            ProgressCircle {
-                id: loadingProgressIndicator
-                anchors.centerIn: parent
-                visible: webView.loading
-                value: webView.loadProgress / 100
             }
 
         }
@@ -154,6 +131,12 @@ Page {
 
         }
 
+    }
+    ProgressCircle {
+        id: loadingProgressIndicator
+        anchors.centerIn: parent
+        visible: webView.loading
+        value: webView.loadProgress / 100
     }
 
     Keys {
