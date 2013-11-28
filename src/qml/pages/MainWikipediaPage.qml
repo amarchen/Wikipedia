@@ -21,10 +21,10 @@ Page {
         id: supportedLangsModel
         ListElement {name: "English"
                      urlCode: "en"}
-        ListElement {name: "Finnish"
-                     urlCode: "fi"}
         ListElement {name: "German"
                      urlCode: "de"}
+        ListElement {name: "Finnish"
+                     urlCode: "fi"}
         ListElement {name: "French"
                      urlCode: "fr"}
         ListElement {name: "Portuguese"
