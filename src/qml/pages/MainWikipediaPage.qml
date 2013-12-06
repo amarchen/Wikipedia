@@ -12,7 +12,10 @@ Page {
 
     // Language selection menu is functional only if combobox opens to a separate page
     // At the moment it needs to have at least this many items for it. A hack of course
-    property int _MIN_MENU_ITEM_COUNT_FOR_COMBOBOX_TO_OPEN_IN_A_SEPARATE_VIEW: 7
+    readonly property int _MIN_MENU_ITEM_COUNT_FOR_COMBOBOX_TO_OPEN_IN_A_SEPARATE_VIEW: 7
+
+    readonly property string _APP_VERSION: "0.3"
+    readonly property string _APP_BUILD_NUMBER: "6"
 
     // Exposes some internal stuff for testing purposes only
     property alias _i: internals
@@ -124,7 +127,7 @@ Page {
                 id: aboutMenuItem
                 text: "About"
                 onClicked: {
-                    pageStack.push("AboutPage.qml")
+                    pageStack.push("AboutPage.qml", {version: _APP_VERSION + "-" + _APP_BUILD_NUMBER})
                     mixpanel.track("opened About page")
                 }
             }
@@ -152,6 +155,11 @@ Page {
     Mixpanel {
         id: mixpanel
         userId: devinfo.imei(0) == "" ? "emulatorImei" : devinfo.imei(0)
+        sendIp: true
+        commonProperties: {
+            "version": _APP_VERSION,
+            "build": _APP_BUILD_NUMBER
+        }
     }
 
     //  Start of Fix for nov 2013
