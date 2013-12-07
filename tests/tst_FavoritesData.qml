@@ -64,7 +64,21 @@ TestCase {
         fd.favourites.append({title: "ABC", url:"http://abc.com"})
         fd.favourites.append({title: "DEF", url:"http://def.com"})
         fd.save()
-        console.log("t: abt to compare")
         compare(recordsCount(), 2)
+    }
+
+    function test_canLoadFavouritesFromDisk() {
+        fd.favourites.append({title: "ABC", url:"http://abc.com"})
+        fd.favourites.append({title: "DEF", url:"http://def.com"})
+        fd.save()
+        fd.favourites.clear()
+        compare(fd.favourites.count, 0, "Failed to clear the in-memory model")
+
+        fd.load()
+        compare(fd.favourites.count, 2)
+
+        // Actually order of records isn't guaranteed, make test more sophisticated if it becomes unstable
+        // @TODO: search all the returned records for "ABC" title - will make test more future proof
+        compare(fd.favourites.get(0).title, "ABC", "Failed to restore favourite data")
     }
 }

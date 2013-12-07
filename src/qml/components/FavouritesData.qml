@@ -20,7 +20,7 @@ QtObject {
      * Saves current favourites model to disk
      */
     function save() {
-        var db = _getPreparedDatabase();
+        var db = _getPreparedDatabase()
         db.transaction(
             function(tx) {
                 tx.executeSql('DELETE FROM favourites');
@@ -34,7 +34,22 @@ QtObject {
 
             );
         }
+    }
 
+    /**
+     * Loads favourites from disk to in-memory model
+     */
+    function load() {
+        favourites.clear()
+        var db = _getPreparedDatabase()
+        db.transaction(
+            function(tx) {
+                var rs = tx.executeSql('SELECT * FROM favourites;');
+                for(var i=0; i < rs.rows.length; i++) {
+                    favourites.append({title: rs.rows.item(i).title, url: rs.rows.item(i).url})
+                }
+            }
+        );
     }
 
     function _getPreparedDatabase() {
