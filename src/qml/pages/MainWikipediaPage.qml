@@ -20,6 +20,10 @@ Page {
     // Exposes some internal stuff for testing purposes only
     property alias _i: internals
 
+    FavouritesData {
+        id: favouritesData
+    }
+
     ListModel {
         id: supportedLangsModel
         ListElement {name: "English"
@@ -47,9 +51,6 @@ Page {
         // accessing private _headerItem.. error prone and not public, don't know better way
         // TODO: replace with a proper accessor if found
         url: "http://" + usedUrlCode + ".m.wikipedia.org/"
-             + (_headerItem.acceptedInput === "" ? "" : "w/index.php?search=" +
-                                                        encodeURIComponent(_headerItem.acceptedInput)
-               )
         onUrlChanged: {
             console.log("webView url changed to " + url);
         }
@@ -76,6 +77,10 @@ Page {
             function searchEntered() {
                 searchField.acceptedInput = text
                 mixpanel.track("searched", {text: text} )
+                webView.url = "http://" + usedUrlCode + ".m.wikipedia.org/"
+                             + (acceptedInput === "" ? "" : "w/index.php?search=" +
+                                                                        encodeURIComponent(acceptedInput)
+                               )
             }
 
         }
@@ -120,6 +125,27 @@ Page {
                     var tweetDialog = pageStack.currentPage
                     tweetDialog.postedTweet.connect(function(initialUrl, initialText) {
                         mixpanel.track("posted tweet", {initialUrl: initialUrl, initialText: initialText})
+                    })
+                }
+            }
+            MenuItem {
+                text: "Add to Favorites"
+                onClicked: {
+                    favouritesData.favourites.append({title: webView.title, url: webView.url.toString()})
+                    favouritesData.save()
+                    mixpanel.track("add to favs", {title: webView.title})
+                }
+            }
+            MenuItem {
+                text: "Favorites"
+                onClicked: {
+                    pageStack.push("FavoritesPage.qml")
+                    mixpanel.track("opened Favorites page")
+
+                    var favouritesPage = pageStack.currentPage
+                    favouritesPage.favouriteChosen.connect(function(title, url) {
+                        mixpanel.track("chosen favorite", {title: title})
+                        webView.url = url
                     })
                 }
             }
