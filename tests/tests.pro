@@ -30,7 +30,8 @@ INSTALLS += target qml extra
 qml.files = *.qml
 
 OTHER_FILES += \
-    tst_MainWikipediaPage.qml
+    tst_MainWikipediaPage.qml \
+    tst_FavoritesData.qml
 
 
 
