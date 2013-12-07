@@ -77,8 +77,6 @@ TestCase {
         fd.load()
         compare(fd.favourites.count, 2)
 
-        // Actually order of records isn't guaranteed, make test more sophisticated if it becomes unstable
-        // @TODO: search all the returned records for "ABC" title - will make test more future proof
         compare(fd.favourites.get(0).title, "ABC", "Failed to restore favourite data")
     }
 }

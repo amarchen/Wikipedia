@@ -44,7 +44,7 @@ QtObject {
         var db = _getPreparedDatabase()
         db.transaction(
             function(tx) {
-                var rs = tx.executeSql('SELECT * FROM favourites;');
+                var rs = tx.executeSql('SELECT * FROM favourites ORDER BY title;');
                 for(var i=0; i < rs.rows.length; i++) {
                     favourites.append({title: rs.rows.item(i).title, url: rs.rows.item(i).url})
                 }
@@ -60,5 +60,9 @@ QtObject {
             }
                     );
         return db;
+    }
+
+    Component.onCompleted: {
+        load()
     }
 }
