@@ -19,6 +19,7 @@ Page {
         delegate: ListItem {
             id: listItem
             contentHeight: Theme.itemSizeSmall
+            menu: contextMenu
             ListView.onRemove: animateRemoval(listItem)
 
             Label {
@@ -26,9 +27,27 @@ Page {
                 text: title
                 color: listItem.highlighted ? Theme.highlightColor : Theme.primaryColor
             }
+
             onClicked: {
                 favouriteChosen(title, url)
                 pageStack.pop()
+            }
+
+            function remove() {
+                remorseAction("Deleting", function() {
+                    favouritesData.favourites.remove(index)
+                    favouritesData.save()
+                }, 2000)
+            }
+
+            Component {
+                id: contextMenu
+                ContextMenu {
+                    MenuItem {
+                        text: "Remove"
+                        onClicked: remove()
+                    }
+                }
             }
         }
     }
