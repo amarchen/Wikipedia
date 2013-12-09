@@ -14,8 +14,8 @@ Page {
     // At the moment it needs to have at least this many items for it. A hack of course
     readonly property int _MIN_MENU_ITEM_COUNT_FOR_COMBOBOX_TO_OPEN_IN_A_SEPARATE_VIEW: 7
 
-    readonly property string _APP_VERSION: "0.4"
-    readonly property string _APP_BUILD_NUMBER: "7"
+    readonly property string _APP_VERSION: "0.5"
+    readonly property string _APP_BUILD_NUMBER: "8"
 
     // Exposes some internal stuff for testing purposes only
     property alias _i: internals
