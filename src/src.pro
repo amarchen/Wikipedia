@@ -36,6 +36,7 @@ OTHER_FILES = \
     qml/pages/TweetDialog.qml \
     qml/cover/CoverPage.qml \
     qml/components/BaseKeySet.qml \
-    qml/components/FavouritesData.qml
+    qml/components/FavouritesData.qml \
+    qml/pages/FavouritesPage.qml
 
 INCLUDEPATH += $$PWD

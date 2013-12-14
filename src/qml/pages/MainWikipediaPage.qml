@@ -129,7 +129,7 @@ Page {
                 }
             }
             MenuItem {
-                text: "Add to Favorites"
+                text: "Add to Favourites"
                 onClicked: {
                     favouritesData.favourites.append({title: webView.title, url: webView.url.toString()})
                     favouritesData.save()
@@ -137,9 +137,10 @@ Page {
                 }
             }
             MenuItem {
-                text: "Favorites"
+                enabled: favouritesData.favourites.count > 0
+                text: "Favourites"
                 onClicked: {
-                    pageStack.push("FavoritesPage.qml")
+                    pageStack.push("FavouritesPage.qml")
                     mixpanel.track("opened Favorites page")
 
                     var favouritesPage = pageStack.currentPage

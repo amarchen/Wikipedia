@@ -50,5 +50,11 @@ Page {
                 }
             }
         }
+
+        ViewPlaceholder {
+            anchors.fill: parent
+            enabled: favouritesData.favourites.count === 0
+            text: "No favourites yet. Add them via the pulley menu in the main view"
+        }
     }
 }
