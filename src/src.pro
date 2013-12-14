@@ -20,11 +20,16 @@ INSTALLS += mixpanel
 
 QML_IMPORT_PATH += $$PWD/qml/components/Mixpanel/src
 
+DEFINES += APP_VERSION=\\\"$$VERSION\\\"
+DEFINES += APP_BUILDNUM=\\\"$$RELEASE\\\"
+
+
 SOURCES += main.cpp
 
 OTHER_FILES = \
     ../rpm/harbour-wikipedia.yaml \
     ../rpm/harbour-wikipedia.spec \
+    qml/main.qml \
     qml/pages/MainWikipediaPage.qml \
     qml/pages/AboutPage.qml \
     qml/pages/BrowserPage.qml \

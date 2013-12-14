@@ -22,6 +22,8 @@ int main(int argc, char *argv[])
 
     QScopedPointer<QGuiApplication> app(SailfishApp::application(argc, argv));
     QScopedPointer<QQuickView> view(SailfishApp::createView());
+    view->rootContext()->setContextProperty("appVersion", APP_VERSION);
+    view->rootContext()->setContextProperty("appBuildNum", APP_BUILDNUM);
     view->engine()->addImportPath(SailfishApp::pathTo("qml/components").toString());
     view->setSource(SailfishApp::pathTo("qml/main.qml"));
 

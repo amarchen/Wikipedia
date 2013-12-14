@@ -14,7 +14,7 @@ Name:       harbour-wikipedia
 %{?qtc_builddir:%define _builddir %qtc_builddir}
 Summary:    Wikipedia for Sailfish OS
 Version:    0.5
-Release:    8
+Release:    9
 Group:      Qt/Qt
 License:    All rights reserved
 Source0:    %{name}-%{version}.tar.bz2
@@ -57,7 +57,9 @@ Removes from RPM files that would cause QA scripts warnings.
 # >> build pre
 # << build pre
 
-%qtc_qmake5 
+%qtc_qmake5  \
+    VERSION=%{version} \
+    RELEASE=%{release}
 
 %qtc_make %{?_smp_mflags}
 
