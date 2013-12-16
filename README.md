@@ -21,19 +21,21 @@ Build from command line
 
 The following assumes that you have installed the SailfishOS SDK into your home directory under the name SailfishOS, and that you want to build an RPM package that you can install on the Jolla phone.
 
-1. Connect to the virtual machine of the Sailfish SDK build engine:
+1. Make sure MerSDK virtual machine is running. Easiest way to check it and start if needed is from Qt Creator. Look for it's icon in the bottom left of the screen.
+
+2. Connect to the virtual machine of the Sailfish SDK build engine:
 
  ssh -p 2222 -i ~/SailfishOS/vmshare/ssh/private_keys/engine/mersdk mersdk@localhost
 
-2. Change to the same directory where you have your git clone:
+3. Change to the same directory where you have your git clone:
 
  cd git/Wikipedia
 
-3. Prepare the build:
+4. Prepare the build:
 
  mb2 -t SailfishOS-armv7hl qmake
 
-4. Execute the build (producing packages in the RPMS directory):
+5. Execute the build (producing packages in the RPMS directory):
 
  mb2 -t SailfishOS-armv7hl rpm
 
@@ -60,6 +62,10 @@ Testing
 Tests should be run as
 `/usr/share/tst-harbour-wikipedia/runTestsOnDevice.sh` from emulator command line (or specify it as "Use this command instead" inside Creator)
 
+ToDo (for which pull requests are particularly welcome)
+-------
+1. Figure out a way to launch command line build from the host system (i.e. launch ssh and perform stuff there?) and get succes status back, so that automating everything Continuous Integration style could be possible.
+
 Support and license
 -------------------
 
@@ -68,4 +74,6 @@ shoot an email to artem.marchenko@gmail.com
 
 License is Attribution-NonCommercial-ShareAlike 3.0 Unported ( http://creativecommons.org/licenses/by-nc-sa/3.0/ )
 so as long as you share alike and provide a link to https://github.com/amarchen/Wikipedia (e.g. in your app About dialog)
-you are free to reuse the code in any non-commercial project
+you are free to reuse the code in any non-commercial project.
+
+Note that Artem himself keeps the right to use the contributed code in commercial purposes too. Particularly he may like to start charging for the Wikipedia app. You can, however, release the non-commercial clone if you like.
