@@ -7,6 +7,7 @@
 #include <QQuickView>
 #include <QQmlEngine>
 #include <QGuiApplication>
+#include <QQmlContext>
 
 
 int main(int argc, char *argv[])
