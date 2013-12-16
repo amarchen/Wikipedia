@@ -14,7 +14,7 @@ Name:       harbour-wikipedia
 %{?qtc_builddir:%define _builddir %qtc_builddir}
 Summary:    Wikipedia for Sailfish OS
 Version:    0.5.2
-Release:    11
+Release:    13
 Group:      Qt/Qt
 License:    All rights reserved
 Source0:    %{name}-%{version}.tar.bz2
