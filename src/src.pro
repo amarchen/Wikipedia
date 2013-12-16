@@ -13,8 +13,8 @@ DEPLOYMENT_PATH = /usr/share/$$TARGET
 
 # moving mixpanel to harbour.wikipedia.Mixpanel location to satisfy new harbour requirements
 # qml.files/path will deploy a copy to the old location, but it's ok, it's not going to be used
-mixpanel.files = qml/components/Mixpanel/src/Mixpanel
-mixpanel.path = $$DEPLOYMENT_PATH/qml/components/harbour/wikipedia
+mixpanel.files = qml/components/Mixpanel/src/Mixpanel/*
+mixpanel.path = $$DEPLOYMENT_PATH/qml/components/harbour/wikipedia/Mixpanel
 
 INSTALLS += mixpanel
 
